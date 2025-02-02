@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="assets/InfinityScroll.png" alt="Infinity Scroll Logo" width="300"/>
+</div>
+
 # 🖼️ Infinity Scroll
 
 <div align="center">
