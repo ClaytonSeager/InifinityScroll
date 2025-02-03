@@ -12,6 +12,7 @@ let photosArray = [];
 let totalLoadedImages = 0;
 const titleColumn = document.querySelector('.Title__Column');
 const imageCounter = document.getElementById('image-counter');
+const scrollTopBtn = document.getElementById('scrollTop');
 
 const imageLoaded = async () => {
     console.log('Image loaded...');
@@ -116,6 +117,19 @@ window.addEventListener('scroll', () => {
     } else {
         titleColumn.classList.remove('scrolled');
     }
+
+    if (scrollY > innerHeight) {
+        scrollTopBtn.classList.add('visible');
+    } else {
+        scrollTopBtn.classList.remove('visible');
+    }
 })
+
+scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
 
 getPhotos();
