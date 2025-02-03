@@ -63,12 +63,6 @@ This project uses the Unsplash API. To use it:
 3. Copy your API key
 4. Update the `KEY` constant in `Infinity.js`
 
-## 📱 Responsive Design
-
-- Desktop: Full-width gallery with centered images
-- Tablet: Adjusted margins and spacing
-- Mobile: Single column layout with optimized UI
-
 ## 🤝 Contributing
 
 Feel free to contribute to this project. Any contributions you make are greatly appreciated.
