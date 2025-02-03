@@ -1,6 +1,6 @@
 const count = 10;
 const KEY = 'BkxbaGupsJapuhYYLjc0OrXYeoyt1Xt_Sr7UKeaoVIc';
-const apiURL = `https://api.unsplash.com/photos/random/?client_id=${KEY}&count=${count}`
+let query = '';
 
 const imageContainer = document.getElementById('Image__Container');
 const loader = document.getElementById('Loader');
@@ -60,10 +60,42 @@ const displayPhotos = () => {
     });
 }
 
+const getApiUrl = () => {
+    const baseUrl = 'https://api.unsplash.com/photos/';
+    const searchUrl = 'https://api.unsplash.com/search/photos/';
+    const params = `client_id=${KEY}&count=${count}`;
+    
+    return query 
+        ? `${searchUrl}?query=${query}&${params}`
+        : `${baseUrl}random/?${params}`;
+};
+
+const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
+
+const handleSearch = () => {
+    query = searchInput.value;
+    imageContainer.innerHTML = '';
+    totalLoadedImages = 0;
+    imageCounter.textContent = '0';
+    loader.hidden = false;
+    getPhotos();
+};
+
+searchButton.addEventListener('click', handleSearch);
+searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        handleSearch();
+    }
+});
+
 const getPhotos = async () => {
     try {
-        const response = await fetch(apiURL);
-        photosArray = await response.json();
+        const response = await fetch(getApiUrl());
+        const data = await response.json();
+        
+        photosArray = query ? data.results : data;
+        
         displayPhotos();
     } catch (error) {
         console.error('Error fetching photos:', error);
